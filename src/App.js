@@ -1,24 +1,46 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react';
+import { useStyles } from './styles';
+import { SelectPower, SelectQuantity } from './components';
+import { Box, Button, Dialog } from '@material-ui/core';
+
+const lenseData = [
+  { power: -0.5, id: 1 }, { power: -0.75, id: 2 }, { power: -1.0, id: 3 },
+  { power: -1.5, id: 4 }, { power: -1.75, id: 5 }, { power: -2.0, id: 6 }
+]
 
 function App() {
+  const classes = useStyles();
+  const [open, setOpen] = useState(false);
+  const [selectQuant, setSelectQuant] = useState(false);
+  const [selectedLenses, setSelectedLenses] = useState([]);
+  const [lenses, setLenses] = useState(lenseData.map(item => { return { ...item } }));
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+    setSelectQuant(false);
+    setLenses(lenseData.map(item => { return { ...item } }));
+  };
+
+  const handleQantSelection = (lenses) => {
+    setSelectQuant(true);
+    setSelectedLenses(lenses.filter(lens => lens.selected))
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Box className={classes.root}>
+      <Button variant='contained' color='primary' onClick={handleClickOpen}>Select Power</Button>
+      <Dialog fullScreen open={open} onClose={handleClose}>
+        {selectQuant ?
+          <SelectQuantity selectedLenses={selectedLenses} handleClose={handleClose} />
+          :
+          <SelectPower data={lenses} handleClose={handleClose} handleQantSelection={handleQantSelection} />
+        }
+      </Dialog>
+    </Box>
   );
 }
 
