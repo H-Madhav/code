@@ -11,4 +11,5 @@ What is included:
 1. Working demo of prototype
 
 What is Left:
-1. Pixel perfect design
+1. Pixel perfect design,
+2. Component Decupling,
