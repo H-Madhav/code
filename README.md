@@ -1,7 +1,6 @@
 # Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-Please open this project in mobile view only.
+Please open index file in root to check the Sum problem.
 
 In the project directory, you can run:
 
@@ -12,6 +11,4 @@ What is included:
 1. Working demo of prototype
 
 What is Left:
-1. Theming
-2. Error handling
-3. Pixel perfect design
+1. Pixel perfect design
